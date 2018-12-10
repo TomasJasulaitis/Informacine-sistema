@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2018 at 01:53 PM
+-- Generation Time: Dec 10, 2018 at 04:54 PM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 5.6.34-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -32,8 +32,8 @@ CREATE TABLE `contacts` (
   `last_name` varchar(20) NOT NULL,
   `phone_number` int(10) NOT NULL,
   `location` varchar(40) NOT NULL,
-  `work_hours_start` datetime NOT NULL,
-  `work_hours_finish` datetime NOT NULL
+  `work_hours_start` time NOT NULL,
+  `work_hours_finish` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -41,7 +41,8 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `phone_number`, `location`, `work_hours_start`, `work_hours_finish`) VALUES
-(1, 'Tomas', 'Jasulaitis', 860306317, 'Kaunas', '2018-12-10 09:00:00', '2018-12-10 18:00:00');
+(1, 'Tomas', 'Jasulaitis', 860306317, 'Kaunas', '09:00:00', '18:00:00'),
+(2, 'Petras', 'Petras', 4458757, 'Vilnius', '09:00:00', '17:55:00');
 
 -- --------------------------------------------------------
 
@@ -73,6 +74,10 @@ INSERT INTO `employees` (`id`, `email`, `password`, `firstName`, `lastName`, `wo
 
 CREATE TABLE `support` (
   `id` int(10) NOT NULL,
+  `first_name` varchar(15) NOT NULL,
+  `last_name` varchar(15) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `phone_number` int(15) NOT NULL,
   `question` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -80,8 +85,9 @@ CREATE TABLE `support` (
 -- Dumping data for table `support`
 --
 
-INSERT INTO `support` (`id`, `question`) VALUES
-(1, 'Testuoju');
+INSERT INTO `support` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `question`) VALUES
+(1, 'Tomas', 'Jasulaitis', 'phexsprays@gmail.com', 860306317, 'Ka daryti'),
+(2, 'ddd', 'ddd', 'ddd', 860306214, 'dddd');
 
 -- --------------------------------------------------------
 
@@ -107,9 +113,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `emailVerified`, `emailVerificationToken`, `passwordRecoveryToken`, `firstName`, `lastName`, `phoneNumber`, `isAdmin`) VALUES
-(2, 'admin@mail.com', '$2y$10$axNjL2QJz.7GCrnpqU.z4e5Rj3Eir9QWiq6Lz.R.xTrzB9bjYmtRu', 1, '000', NULL, 'Vardenis', 'Pavardenis', '+37066666666', 1),
 (3, 'test@mail.com', '$2y$10$guXYOLDSsZ7NauqhTRi6Ter54A01n0gbH/ZS/dsownH1mFGhCldgW', 1, '000', NULL, 'Rolandas', 'Paksas', '+37066666667', 0),
-(4, 'ddd@gmail.com', '$2y$10$HNBC7sTAxhlq7z4etvjyae9/EygLO8JLeW3PxLGhh3d26/7/7Ml.G', 1, '000', NULL, 'gggg', 'gggg', '5555', 0);
+(4, 'ddd@gmail.com', '$2y$10$HNBC7sTAxhlq7z4etvjyae9/EygLO8JLeW3PxLGhh3d26/7/7Ml.G', 1, '000', NULL, 'gggg', 'gggg', '5555', 0),
+(6, 'admin@gmail.com', '$2y$10$LZeKvaJru4Y6DQgPwZtgOOcpHgtXNsWYwrWcd8h4TkWcIYZF3owg6', 1, '000', NULL, 'Tomas', 'Tomas', '4444444', 1);
 
 --
 -- Indexes for dumped tables
@@ -147,17 +153,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `support`
 --
 ALTER TABLE `support`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
