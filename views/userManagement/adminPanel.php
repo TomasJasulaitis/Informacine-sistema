@@ -16,7 +16,7 @@
   <ul>
     <li><a href="addEmployee.php" class="text-secondary">Pridėti darbuotoją</a></li>
     <li><a href="deleteEmployee.php" class="text-secondary">Pašalinti darbuotoją</a></li>
-    <li><a href="addContacts.php" class="text-secondary">Pridėti kontaktą</a></li>
+    <li><a href="../support/addContacts.php" class="text-secondary">Pridėti kontaktą</a></li>
     <li><a href="changeContacts.php" class="text-secondary">Pakeisti kontaktus</a></li>
     <li><a href="userActions.php" class="text-secondary">Atgal</a></li>
   </ul>
