@@ -7,7 +7,7 @@
   allowAccess(true, false, "../../index.php");
 
 	$_SESSION['prefix'] = "../../";
-	$_SESSION['currentPage'] = "userInfo";
+	$_SESSION['currentPage'] = "userActions";
 	include_once '../header.php';
 ?>
 
