@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+include_once '../../inc/accessControl.php';
+allowLogedIn("../../views/userManagement/login.php");
+allowAccess(true, false, "../../index.php");
 
 if (isset($_POST["submit"])) {
   //include_once 'dbconn.php';

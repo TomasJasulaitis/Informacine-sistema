@@ -11,7 +11,7 @@
   $employees = mysqli_query($conn, $sql);
 
 	$_SESSION['prefix'] = "../../";
-	$_SESSION['currentPage'] = "userInfo";
+	$_SESSION['currentPage'] = "userActions";
 	include_once '../header.php';
 ?>
 
