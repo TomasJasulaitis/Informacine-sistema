@@ -1,8 +1,10 @@
 <?php 
   session_start();
   
-  // Access control here
-  // Code...
+  // Access control
+  include_once '../../inc/accessControl.php';
+  allowLogedIn("../../views/userManagement/login.php");
+  allowAccess(true, false, "../../index.php");
 
 	$_SESSION['prefix'] = "../../";
 	$_SESSION['currentPage'] = "userInfo";

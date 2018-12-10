@@ -1,5 +1,9 @@
 <?php 
-	session_start();
+  session_start();
+  // Access control
+  include_once '../../inc/accessControl.php';
+  allowLogedIn("../../views/userManagement/login.php");
+
 	$_SESSION['prefix'] = "../../";
 	$_SESSION['currentPage'] = "userActions";
 	include_once '../header.php';
