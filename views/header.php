@@ -28,8 +28,9 @@
           <li class="nav-item '.($_SESSION['currentPage']==="production"? " active" : "").'">
             <a class="nav-link" href="Production.html">Gamyba</a>
           </li>
-          <li class="nav-item '.($_SESSION['currentPage']==="support"? " active" : "").'">
-            <a class="nav-link" href="Support.html">Aptarnavimas</a>
+ 	<li class="nav-item '.($_SESSION['currentPage']==="supportMain"? " active" : "").'">
+              <a class="nav-link" href="'.$_SESSION['prefix'].'views/support/supportMain.php">Aptarnavimas</a>
+           
           </li>
           '; ?>
         </ul>
