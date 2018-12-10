@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="id">Darbuotojo ID</label>
-        <input type="text" class="form-control" name="id">
+        <input type="text" maxlength="10" class="form-control" name="id">
       </div>
       <div class="form-group">
         <label for="email">El. paštas</label>
