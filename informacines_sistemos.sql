@@ -7,7 +7,10 @@
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 5.6.34-1+ubuntu16.04.1+deb.sury.org+1
 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +26,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contacts`
+-- Sukurta duomenų struktūra lentelei `brokenitems`
+--
+
+CREATE TABLE `brokenitems` (
+  `id` int(10) NOT NULL,
+  `brand` varchar(20) NOT NULL,
+  `model` varchar(20) NOT NULL,
+  `faults` text NOT NULL,
+  `state` varchar(20) NOT NULL,
+  `emploee` varchar(20) NOT NULL,
+  `price` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Sukurta duomenų kopija lentelei `brokenitems`
+--
+
+INSERT INTO `brokenitems` (`id`, `brand`, `model`, `faults`, `state`, `emploee`, `price`) VALUES
+(1, 'Nokia', 'c55', 'Neisijungia.', 'Registruojama', '#puteikis1', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Sukurta duomenų struktūra lentelei `contacts`
 --
 
 CREATE TABLE `contacts` (
@@ -37,7 +63,7 @@ CREATE TABLE `contacts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `contacts`
+-- Sukurta duomenų kopija lentelei `contacts`
 --
 
 INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `phone_number`, `location`, `work_hours_start`, `work_hours_finish`) VALUES
@@ -47,7 +73,7 @@ INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `phone_number`, `locati
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employees`
+-- Sukurta duomenų struktūra lentelei `employees`
 --
 
 CREATE TABLE `employees` (
@@ -60,7 +86,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `employees`
+-- Sukurta duomenų kopija lentelei `employees`
 --
 
 INSERT INTO `employees` (`id`, `email`, `password`, `firstName`, `lastName`, `workingSince`) VALUES
@@ -69,7 +95,7 @@ INSERT INTO `employees` (`id`, `email`, `password`, `firstName`, `lastName`, `wo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support`
+-- Sukurta duomenų struktūra lentelei `support`
 --
 
 CREATE TABLE `support` (
@@ -82,7 +108,7 @@ CREATE TABLE `support` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `support`
+-- Sukurta duomenų kopija lentelei `support`
 --
 
 INSERT INTO `support` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `question`) VALUES
@@ -92,7 +118,7 @@ INSERT INTO `support` (`id`, `first_name`, `last_name`, `email`, `phone_number`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Sukurta duomenų struktūra lentelei `users`
 --
 
 CREATE TABLE `users` (
@@ -109,7 +135,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Sukurta duomenų kopija lentelei `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `emailVerified`, `emailVerificationToken`, `passwordRecoveryToken`, `firstName`, `lastName`, `phoneNumber`, `isAdmin`) VALUES
@@ -120,6 +146,13 @@ INSERT INTO `users` (`id`, `email`, `password`, `emailVerified`, `emailVerificat
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `brokenitems`
+--
+ALTER TABLE `brokenitems`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `repairing` (`emploee`);
 
 --
 -- Indexes for table `contacts`
@@ -150,20 +183,40 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `brokenitems`
+--
+ALTER TABLE `brokenitems`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `support`
 --
 ALTER TABLE `support`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Apribojimai eksportuotom lentelėm
+--
+
+--
+-- Apribojimai lentelei `brokenitems`
+--
+ALTER TABLE `brokenitems`
+  ADD CONSTRAINT `repairing` FOREIGN KEY (`emploee`) REFERENCES `employees` (`id`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
