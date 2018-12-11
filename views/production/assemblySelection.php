@@ -12,11 +12,11 @@
         <div class="form-group">
            <label for="exampleFormControlSelect2">Pasirinkite telefono markę</label>
     <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Samsung</option>
-      <option>iPhone</option>
-      <option>Huawei</option>
-      <option>Sony</option>
-      <option>Nokia</option>
+      <option value="Samsung">Samsung</option>
+      <option value="Iphone">iPhone</option>
+      <option value="Huawei">Huawei</option>
+      <option value="Sony">Sony</option>
+      <option value="Nokia">Nokia</option>
     </select>
         </div>
         <div class="form-group">
@@ -25,23 +25,18 @@
         </div>
         <div class="form-group">
             <label for="id">Pasirinkite telefono spalvą</label>
-            <select class="form-control">
-            <option>Juoda</option>
-            <option>Balta</option>
-            <option>Raudona</option>
-            <option>Mėlyna</option>
-</select>
+            <input type="text" class="form-control" id="color">
         </div>
          <div class="form-group">
           <label for="lastName">Įveskite telefono atminties dydį</label>
-          <input type="text" class="form-control" id="lastName">
+          <input type="number" class="form-control" id="memory_size">
         </div>
         <div class="form-group">
             <label for="pass">Įveskite RAM atminties dydį</label>
-            <input type="password" class="form-control" id="pass">
+            <input type="number" class="form-control" id="ram_size">
         </div>
-        <button type="submit" class="btn btn-success form-control">Patvirtinti</button>
-        <a href="Production.html" class="btn btn-secondary btn-md form-control mt-2" role="button" aria-pressed="true">Atgal</a>
+        <button name="submit" type="submit" class="btn btn-success form-control">Patvirtinti</button>
+        <a href="productionMain.php" class="btn btn-secondary btn-md form-control mt-2" role="button" aria-pressed="true">Atgal</a>
       </div>
     </form>
   </div>
