@@ -42,7 +42,6 @@ allowAccess(true, false, "../../index.php");*/
       <th>RAM</th>
       <th>Redaguoti</th>
       <th>Pasalinti</th>
-
     </tr>
     ';
     while($row = mysqli_fetch_assoc($result)){
