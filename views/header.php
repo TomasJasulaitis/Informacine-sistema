@@ -23,7 +23,7 @@
             <a class="nav-link" href="Sales.html">Pardavimai</a>
           </li>
           <li class="nav-item '.($_SESSION['currentPage']==="repair"? " active" : "").'">
-            <a class="nav-link" href="Repair.html">Remontas</a>
+            <a class="nav-link" href="repairmentMain.php">Remontas</a>
           </li>
           <li class="nav-item '.($_SESSION['currentPage']==="production"? " active" : "").'">
             <a class="nav-link" href="Production.html">Gamyba</a>
