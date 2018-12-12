@@ -35,6 +35,10 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
+    $sql = "SELECT * FROM users WHERE email='$email'"; 
+    $result2 = mysqli_query($conn, $sql);
+    $resultCheck = $resultCheck + mysqli_num_rows($result2);
+
     if ($resultCheck > 0) {
       header("Location: ../../views/userManagement/addEmployee.php?message=usertaken");
       exit();

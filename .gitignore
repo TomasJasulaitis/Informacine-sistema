@@ -1,5 +1,6 @@
 vendor/
 node_modules/
+mail.txt
 npm-debug.log
 
 # Laravel 4 specific
