@@ -20,7 +20,7 @@
         <ul class="nav navbar-nav">
           <?php echo '
           <li class="nav-item '.($_SESSION['currentPage']==="sales"? " active" : "").'">
-            <a class="nav-link" href="Sales.html">Pardavimai</a>
+            <a class="nav-link" href="'.$_SESSION['prefix'].'views/sales/salesMain.php">Pardavimai</a>
           </li>
           <li class="nav-item '.($_SESSION['currentPage']==="repair"? " active" : "").'">
           <a class="nav-link" href="'.$_SESSION['prefix'].'views/repairment/repairmentMain.php">Remontas</a>
@@ -58,4 +58,5 @@
         </ul>
       </div>
     </nav>
+    <?php include_once 'showMessage.php'; ?>
   </div>

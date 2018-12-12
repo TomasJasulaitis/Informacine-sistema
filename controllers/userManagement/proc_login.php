@@ -51,23 +51,27 @@ if (isset($_POST["submit"])) {
       }
     } else {
       // Logging in as user
-      if ($row = mysqli_fetch_assoc($result)) {
-        $passCheck = password_verify($pass, $row['password']);
-        if ($passCheck === false) {
-          header("Location: ../../views/userManagement/login.php?message=error");
-          exit();
-        } elseif ($passCheck === true) {
-          // Loging in the usert
-          $_SESSION['id'] = $row['id'];
-          $_SESSION['email'] = $row['email'];
-          $_SESSION['firstName'] = $row['firstName'];
-          $_SESSION['lastName'] = $row['lastName'];
-          $_SESSION['phoneNumber'] = $row['phoneNumber'];
-          $_SESSION['isAdmin'] = $row['isAdmin'];
+      $row = mysqli_fetch_assoc($result);
+      if ($row['emailVerified'] == 0) {
+        header("Location: ../../views/userManagement/login.php?message=notVerified");
+        exit();
+      }
 
-          header("Location: ../../index.php");
-          exit();
-        }
+      $passCheck = password_verify($pass, $row['password']);
+      if ($passCheck === false) {
+        header("Location: ../../views/userManagement/login.php?message=error");
+        exit();
+      } elseif ($passCheck === true) {
+        // Loging in the usert
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['firstName'] = $row['firstName'];
+        $_SESSION['lastName'] = $row['lastName'];
+        $_SESSION['phoneNumber'] = $row['phoneNumber'];
+        $_SESSION['isAdmin'] = $row['isAdmin'];
+
+        header("Location: ../../index.php");
+        exit();
       }
     }
   }
