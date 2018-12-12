@@ -1,12 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 10, 2018 at 04:54 PM
--- Server version: 5.7.24-0ubuntu0.16.04.1
--- PHP Version: 5.6.34-1+ubuntu16.04.1+deb.sury.org+1
-
+-- Host: 127.0.0.1
+-- Generation Time: Dec 12, 2018 at 02:52 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `brokenitems`
+-- Table structure for table `brokenitems`
 --
 
 CREATE TABLE `brokenitems` (
@@ -40,7 +39,7 @@ CREATE TABLE `brokenitems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Sukurta duomenų kopija lentelei `brokenitems`
+-- Dumping data for table `brokenitems`
 --
 
 INSERT INTO `brokenitems` (`id`, `brand`, `model`, `faults`, `state`, `emploee`, `price`) VALUES
@@ -49,7 +48,7 @@ INSERT INTO `brokenitems` (`id`, `brand`, `model`, `faults`, `state`, `emploee`,
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `contacts`
+-- Table structure for table `contacts`
 --
 
 CREATE TABLE `contacts` (
@@ -63,7 +62,7 @@ CREATE TABLE `contacts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Sukurta duomenų kopija lentelei `contacts`
+-- Dumping data for table `contacts`
 --
 
 INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `phone_number`, `location`, `work_hours_start`, `work_hours_finish`) VALUES
@@ -73,7 +72,7 @@ INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `phone_number`, `locati
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -86,7 +85,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Sukurta duomenų kopija lentelei `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`id`, `email`, `password`, `firstName`, `lastName`, `workingSince`) VALUES
@@ -95,7 +94,28 @@ INSERT INTO `employees` (`id`, `email`, `password`, `firstName`, `lastName`, `wo
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `support`
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `type` varchar(15) NOT NULL,
+  `price` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `name`, `type`, `price`) VALUES
+(7, 'Huawei x80', 'Telefonas', '800.00'),
+(8, 'Iphone 58', 'Telefonas', '888.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `support`
 --
 
 CREATE TABLE `support` (
@@ -108,17 +128,18 @@ CREATE TABLE `support` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Sukurta duomenų kopija lentelei `support`
+-- Dumping data for table `support`
 --
 
 INSERT INTO `support` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `question`) VALUES
 (1, 'Tomas', 'Jasulaitis', 'phexsprays@gmail.com', 860306317, 'Ka daryti'),
-(2, 'ddd', 'ddd', 'ddd', 860306214, 'dddd');
+(2, 'ddd', 'ddd', 'ddd', 860306214, 'dddd'),
+(3, 'asd', 'asd', 'asd', 0, 'asd');
 
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -135,7 +156,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Sukurta duomenų kopija lentelei `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `emailVerified`, `emailVerificationToken`, `passwordRecoveryToken`, `firstName`, `lastName`, `phoneNumber`, `isAdmin`) VALUES
@@ -167,6 +188,12 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `support`
 --
 ALTER TABLE `support`
@@ -195,10 +222,16 @@ ALTER TABLE `contacts`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `support`
 --
 ALTER TABLE `support`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -207,11 +240,11 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Apribojimai eksportuotom lentelėm
+-- Constraints for dumped tables
 --
 
 --
--- Apribojimai lentelei `brokenitems`
+-- Constraints for table `brokenitems`
 --
 ALTER TABLE `brokenitems`
   ADD CONSTRAINT `repairing` FOREIGN KEY (`emploee`) REFERENCES `employees` (`id`);
