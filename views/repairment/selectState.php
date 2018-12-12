@@ -11,7 +11,7 @@
 	include_once '../header.php';
 ?>
   <div class="container">
-    <h1 class="h2 text-center">Sugedusios prekės priskirimas specialistui</h1>
+    <h1 class="h2 text-center">Sugedusios prekės būsenos nustatymas</h1>
     <form method="post" action="../../controllers/repairment/proc_selectState.php">
       <div class="form-row">
         <div class="form-group col-md-6">
