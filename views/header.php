@@ -26,7 +26,7 @@
           <a class="nav-link" href="'.$_SESSION['prefix'].'views/repairment/repairmentMain.php">Remontas</a>
           </li>
           <li class="nav-item '.($_SESSION['currentPage']==="production"? " active" : "").'">
-            <a class="nav-link" href="Production.html">Gamyba</a>
+            <a class="nav-link" href="'.$_SESSION['prefix'].'views/production/productionMain.php">Gamyba</a>
           </li>
  	<li class="nav-item '.($_SESSION['currentPage']==="supportMain"? " active" : "").'">
               <a class="nav-link" href="'.$_SESSION['prefix'].'views/support/supportMain.php">Aptarnavimas</a>

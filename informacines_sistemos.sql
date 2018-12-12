@@ -25,6 +25,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 
+--
+--  Sukurta duomenu struktura lentelei orders
+--
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `brand` varchar(20) NOT NULL,
+  `model` varchar(20) NOT NULL,
+  `color` varchar(20) NOT NULL,
+  `memory_size` int(10) NOT NULL,
+  `ram_size` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Sukurta duomenų kopija lentelei `orders`
+--
+INSERT INTO `orders` (`id`, `brand`, `model`, `color`, `memory_size`, `ram_size`) VALUES
+(111, 'Nokia', 'c55', 'Black', '5000', '512');
+
+--
+-- Sukurta duomenų struktūra lentelei `brokenitems`
+--
+
 CREATE TABLE `brokendeviceeevaluation` (
   `id` int(10) NOT NULL,
   `evaluation` varchar(50) NOT NULL,
@@ -36,7 +58,6 @@ CREATE TABLE `brokendeviceeevaluation` (
 INSERT INTO `brokendeviceeevaluation` (`id`, `evaluation`, `comments`) VALUES
 (0, 'asd', 'asd'),
 (18, 'asd', 'asd');
-
 
 CREATE TABLE `brokenitems` (
   `id` int(10) NOT NULL,
@@ -186,7 +207,11 @@ INSERT INTO `users` (`id`, `email`, `password`, `emailVerified`, `emailVerificat
 --
 -- Indexes for dumped tables
 --
-
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `brokendeviceeevaluation`
 --
@@ -235,6 +260,11 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+--
+-- AUTO_INCREMENT for table `brokenitems`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `brokenitems`
