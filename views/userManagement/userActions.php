@@ -28,7 +28,6 @@
   <!-- Bendri vartotojų veiksmai -->
   <a href="changeUserData.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Keisti duomenis</a>
   <a href="changePassword.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Keisti slaptažodį</a>
-  <a href="resetPassword.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Atkurti slaptažodį</a>
   <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) { ?>
   <!-- Admino veiksmai -->
   <a href="adminPanel.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Administratoriaus panelė</a>
