@@ -97,7 +97,7 @@ if (isset($_POST["submit"])) {
       }
 
 
-    header("Location: ../../views/userManagement/login.php?message=registration-success");
+    header("Location: ../../views/userManagement/login.php?message=success");
     exit();
   }
 
