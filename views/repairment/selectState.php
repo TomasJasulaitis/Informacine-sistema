@@ -7,23 +7,23 @@
  // allowAccess(true, false, "../../index.php");
 
 	$_SESSION['prefix'] = "../../";
-	$_SESSION['currentPage'] = "userActions";
+	$_SESSION['currentPage'] = "selectState";
 	include_once '../header.php';
 ?>
   <div class="container">
     <h1 class="h2 text-center">Sugedusios prekės priskirimas specialistui</h1>
-    <form method="post" action="#">
+    <form method="post" action="../../controllers/repairment/proc_selectState.php">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="lastName">Prekė</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Pavadinimas">
+          <label for="id">Prekės Nr.</label>
+          <input type="text" class="form-control" name="id" placeholder="Nr">
         </div>
         <div class="form-group col-md-6">
             <div class="form-group col-md-12">
-              <label for="lastName">Būsena</label>
-              <input type="text" class="form-control" id="lastNames" placeholder="Būsena">
+              <label for="state">Būsena</label>
+              <input type="text" class="form-control" name="state" placeholder="Būsena">
             </div>
-		<button type="submit" class="btn btn-primary form-control">Patvritinti</button>
+            <button type="submit" name="submit" class="btn btn-primary form-control">Patvritinti</button>
 		<a href="repairmentMain.php" class="btn btn-secondary btn-md form-control mt-2" role="button" aria-pressed="true">Atgal</a>
       </div>
     </form>

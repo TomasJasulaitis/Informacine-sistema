@@ -20,6 +20,7 @@
   <a href="checkState.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" width="auto">Būsenos tikrinimas</a>
 
 
+
 	<a href="AddBrokenItem.html" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" width="auto">Pridėti prekę</a>
 
     <!-- Čia dedam savo -->

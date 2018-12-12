@@ -26,6 +26,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Sukurta duomenų struktūra lentelei `brokendeviceeevaluation`
+--
+
+CREATE TABLE `brokendeviceeevaluation` (
+  `id` int(10) NOT NULL,
+  `evaluation` varchar(50) NOT NULL,
+  `comments` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Sukurta duomenų kopija lentelei `brokendeviceeevaluation`
+--
+
+INSERT INTO `brokendeviceeevaluation` (`id`, `evaluation`, `comments`) VALUES
+(0, 'asd', 'asd'),
+(18, 'asd', 'asd');
+
+-- --------------------------------------------------------
+
+--
 -- Sukurta duomenų struktūra lentelei `brokenitems`
 --
 
@@ -35,16 +55,23 @@ CREATE TABLE `brokenitems` (
   `model` varchar(20) NOT NULL,
   `faults` text NOT NULL,
   `state` varchar(20) NOT NULL,
+  `user` int(10) NOT NULL,
   `emploee` varchar(20) NOT NULL,
-  `price` decimal(10,0) NOT NULL
+  `price` decimal(10,0) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `evaluation` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Sukurta duomenų kopija lentelei `brokenitems`
 --
 
-INSERT INTO `brokenitems` (`id`, `brand`, `model`, `faults`, `state`, `emploee`, `price`) VALUES
-(1, 'Nokia', 'c55', 'Neisijungia.', 'Registruojama', '#puteikis1', '0');
+INSERT INTO `brokenitems` (`id`, `brand`, `model`, `faults`, `state`, `user`, `emploee`, `price`, `date`, `evaluation`) VALUES
+(17, 'asd', 'asd', 'asd', 'lala', 3, '#pukis2', '1', '2018-12-12', NULL),
+(18, '17', 'asd', 'asd', 'asfasc', 3, '#pukis2', NULL, '2018-12-12', 18),
+(19, '17', 'sadasd', 'asd', 'Laukiama patvirtinim', 3, '#pukis2', NULL, '2018-12-12', NULL),
+(20, 'asdasd', 'asdasd', 'asdasd', 'Laukiama patvirtinim', 3, '#pukis2', NULL, '2018-12-12', NULL),
+(21, '18', 'asf', 'asf', 'Laukiama patvirtinim', 3, '#pukis2', NULL, '2018-12-12', NULL);
 
 -- --------------------------------------------------------
 
@@ -90,6 +117,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `email`, `password`, `firstName`, `lastName`, `workingSince`) VALUES
+('#pukis2', 'pukas@one.lt', 'pukipuki', 'Andrius', 'Pukys', '2018-12-10'),
 ('#puteikis1', 'puteikis@mail.com', '$2y$10$8lI4PARabKaXWEbeGPmPceeEn6QvlCkQw6TfaBjvqiiHw35rKxtEe', 'Naglis', 'Puteikis', '2018-12-10');
 
 -- --------------------------------------------------------
@@ -141,18 +169,27 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `emailVerified`, `emailVerificationToken`, `passwordRecoveryToken`, `firstName`, `lastName`, `phoneNumber`, `isAdmin`) VALUES
 (3, 'test@mail.com', '$2y$10$guXYOLDSsZ7NauqhTRi6Ter54A01n0gbH/ZS/dsownH1mFGhCldgW', 1, '000', NULL, 'Rolandas', 'Paksas', '+37066666667', 0),
 (4, 'ddd@gmail.com', '$2y$10$HNBC7sTAxhlq7z4etvjyae9/EygLO8JLeW3PxLGhh3d26/7/7Ml.G', 1, '000', NULL, 'gggg', 'gggg', '5555', 0),
-(6, 'admin@gmail.com', '$2y$10$LZeKvaJru4Y6DQgPwZtgOOcpHgtXNsWYwrWcd8h4TkWcIYZF3owg6', 1, '000', NULL, 'Tomas', 'Tomas', '4444444', 1);
+(6, 'admin@gmail.com', '$2y$10$LZeKvaJru4Y6DQgPwZtgOOcpHgtXNsWYwrWcd8h4TkWcIYZF3owg6', 1, '000', NULL, 'Tomas', 'Tomas', '4444444', 1),
+(7, 'asdasd@asdasd', '$2y$10$dYzeKPXxsUUBUAZMIi2fM.XeouyLt5Xa2PtMDHB7A0ddfa7BOmUJq', 1, '000', NULL, 'zxzxzx', 'ZxZxZx', '12123123123', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `brokendeviceeevaluation`
+--
+ALTER TABLE `brokendeviceeevaluation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `brokenitems`
 --
 ALTER TABLE `brokenitems`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `repairing` (`emploee`);
+  ADD KEY `approvs` (`emploee`),
+  ADD KEY `adds` (`evaluation`),
+  ADD KEY `registers` (`user`);
 
 --
 -- Indexes for table `contacts`
@@ -186,7 +223,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brokenitems`
 --
 ALTER TABLE `brokenitems`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -204,7 +241,7 @@ ALTER TABLE `support`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Apribojimai eksportuotom lentelėm
@@ -214,7 +251,9 @@ ALTER TABLE `users`
 -- Apribojimai lentelei `brokenitems`
 --
 ALTER TABLE `brokenitems`
-  ADD CONSTRAINT `repairing` FOREIGN KEY (`emploee`) REFERENCES `employees` (`id`);
+  ADD CONSTRAINT `adds` FOREIGN KEY (`evaluation`) REFERENCES `brokendeviceeevaluation` (`id`),
+  ADD CONSTRAINT `approvs` FOREIGN KEY (`emploee`) REFERENCES `employees` (`id`),
+  ADD CONSTRAINT `registers` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
