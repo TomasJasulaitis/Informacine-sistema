@@ -1,6 +1,6 @@
 --@(#) script.ddl
 
-CREATE TABLE 2 Esybiu_rysiai.Employee
+CREATE TABLE informacines_sistema.Employee
 (
 	email varchar,
 	firstName varchar,
@@ -10,7 +10,7 @@ CREATE TABLE 2 Esybiu_rysiai.Employee
 	PRIMARY KEY(id_Employee)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.Item
+CREATE TABLE informacines_sistema.Item
 (
 	name varchar,
 	count int,
@@ -22,9 +22,7 @@ CREATE TABLE 2 Esybiu_rysiai.Item
 	PRIMARY KEY(id_Item)
 );
 
-
-
-CREATE TABLE 2 Esybiu_rysiai.User
+CREATE TABLE informacines_sistema.User
 (
 	email varchar,
 	password varchar,
@@ -38,17 +36,7 @@ CREATE TABLE 2 Esybiu_rysiai.User
 	PRIMARY KEY(id_User)
 );
 
-
-CREATE TABLE 2 Esybiu_rysiai.Vartotoju_duomenys
-(
-	vardas,
-	pavarde,
-	telefono_nr,
-	id_Vartotoj?_duomenys integer,
-	PRIMARY KEY(id_Vartotoj?_duomenys)
-);
-
-CREATE TABLE 2 Esybiu_rysiai.Contacts
+CREATE TABLE informacines_sistema.Contacts
 (
 	first_name,
 	last_name,
@@ -60,22 +48,22 @@ CREATE TABLE 2 Esybiu_rysiai.Contacts
 	fk_Userid_User integer NOT NULL,
 	PRIMARY KEY(id_Contacts),
 	UNIQUE(fk_Userid_User),
-	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES 2 Esybiu_rysiai.User (id_User)
+	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES informacines_sistema.User (id_User)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.employee_evaluation
+CREATE TABLE informacines_sistema.employee_evaluation
 (
 	stars int,
 	comment varchar,
 	id_employee_evaluation integer,
-	fk_Userid_User integer NOT NULL,
 	fk_Employeeid_Employee integer NOT NULL,
+	fk_Userid_User integer NOT NULL,
 	PRIMARY KEY(id_employee_evaluation),
-	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES 2 Esybiu_rysiai.User (id_User),
-	CONSTRAINT Evaluates FOREIGN KEY(fk_Employeeid_Employee) REFERENCES 2 Esybiu_rysiai.Employee (id_Employee)
+	CONSTRAINT Evaluates FOREIGN KEY(fk_Employeeid_Employee) REFERENCES informacines_sistema.Employee (id_Employee),
+	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES informacines_sistema.User (id_User)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.Item_replenishment
+CREATE TABLE informacines_sistema.Item_replenishment
 (
 	item_replenishment_number int,
 	date timestamp,
@@ -84,36 +72,36 @@ CREATE TABLE 2 Esybiu_rysiai.Item_replenishment
 	fk_Itemid_Item integer NOT NULL,
 	fk_Employeeid_Employee integer NOT NULL,
 	PRIMARY KEY(id_Item_replenishment),
-	CONSTRAINT Registers FOREIGN KEY(fk_Itemid_Item) REFERENCES 2 Esybiu_rysiai.Item (id_Item),
-	CONSTRAINT Creates FOREIGN KEY(fk_Employeeid_Employee) REFERENCES 2 Esybiu_rysiai.Employee (id_Employee)
+	CONSTRAINT Registers FOREIGN KEY(fk_Itemid_Item) REFERENCES informacines_sistema.Item (id_Item),
+	CONSTRAINT Creates FOREIGN KEY(fk_Employeeid_Employee) REFERENCES informacines_sistema.Employee (id_Employee)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.repair_document
+CREATE TABLE informacines_sistema.repair_document
 (
 	repair_description varchar,
 	item_status char (20),
 	id_repair_document integer,
+	fk_Userid_User integer NOT NULL,
 	fk_Itemid_Item integer NOT NULL,
 	fk_Employeeid_Employee integer NOT NULL,
-	fk_Userid_User integer NOT NULL,
 	CHECK(item_status in ('waiting_for_approval', 'rejected', ' in_progress', 'completed')),
 	PRIMARY KEY(id_repair_document),
 	UNIQUE(fk_Itemid_Item),
-	CONSTRAINT Registers FOREIGN KEY(fk_Itemid_Item) REFERENCES 2 Esybiu_rysiai.Item (id_Item),
-	CONSTRAINT Approves FOREIGN KEY(fk_Employeeid_Employee) REFERENCES 2 Esybiu_rysiai.Employee (id_Employee),
-	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES 2 Esybiu_rysiai.User (id_User)
+	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES informacines_sistema.User (id_User),
+	CONSTRAINT Registers FOREIGN KEY(fk_Itemid_Item) REFERENCES informacines_sistema.Item (id_Item),
+	CONSTRAINT Approves FOREIGN KEY(fk_Employeeid_Employee) REFERENCES informacines_sistema.Employee (id_Employee)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.Support
+CREATE TABLE informacines_sistema.Support
 (
 	question varchar,
 	id_Support integer,
 	fk_Userid_User integer NOT NULL,
 	PRIMARY KEY(id_Support),
-	CONSTRAINT Gets FOREIGN KEY(fk_Userid_User) REFERENCES 2 Esybiu_rysiai.User (id_User)
+	CONSTRAINT Gets FOREIGN KEY(fk_Userid_User) REFERENCES informacines_sistema.User (id_User)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.Order
+CREATE TABLE informacines_sistema.Order
 (
 	document_date timestamp,
 	order_additional_information varchar,
@@ -126,15 +114,15 @@ CREATE TABLE 2 Esybiu_rysiai.Order
 	price double precision,
 	status char (19),
 	id_Order integer,
-	fk_Userid_User integer NOT NULL,
 	fk_repair_documentid_repair_document integer NOT NULL,
+	fk_Userid_User integer NOT NULL,
 	CHECK(status in ('waiting_for_payment', 'rejected', 'completed')),
 	PRIMARY KEY(id_Order),
-	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES 2 Esybiu_rysiai.User (id_User),
-	CONSTRAINT Includes FOREIGN KEY(fk_repair_documentid_repair_document) REFERENCES 2 Esybiu_rysiai.repair_document (id_repair_document)
+	CONSTRAINT Includes FOREIGN KEY(fk_repair_documentid_repair_document) REFERENCES informacines_sistema.repair_document (id_repair_document),
+	CONSTRAINT Creates FOREIGN KEY(fk_Userid_User) REFERENCES informacines_sistema.User (id_User)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.delivery
+CREATE TABLE informacines_sistema.delivery
 (
 	company_name varchar,
 	courier_name varchar,
@@ -146,22 +134,22 @@ CREATE TABLE 2 Esybiu_rysiai.delivery
 	fk_Orderid_Order integer NOT NULL,
 	PRIMARY KEY(id_delivery),
 	UNIQUE(fk_Orderid_Order),
-	CONSTRAINT Includes FOREIGN KEY(fk_Orderid_Order) REFERENCES 2 Esybiu_rysiai.Order (id_Order)
+	CONSTRAINT Includes FOREIGN KEY(fk_Orderid_Order) REFERENCES informacines_sistema.Order (id_Order)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.item_evaluation
+CREATE TABLE informacines_sistema.item_evaluation
 (
 	stars int,
 	comment varchar,
 	id_item_evaluation integer,
-	fk_Orderid_Order integer NOT NULL,
 	fk_Itemid_Item integer NOT NULL,
+	fk_Orderid_Order integer NOT NULL,
 	PRIMARY KEY(id_item_evaluation),
-	CONSTRAINT Creates FOREIGN KEY(fk_Orderid_Order) REFERENCES 2 Esybiu_rysiai.Order (id_Order),
-	CONSTRAINT Evaluates FOREIGN KEY(fk_Itemid_Item) REFERENCES 2 Esybiu_rysiai.Item (id_Item)
+	CONSTRAINT Evaluates FOREIGN KEY(fk_Itemid_Item) REFERENCES informacines_sistema.Item (id_Item),
+	CONSTRAINT Creates FOREIGN KEY(fk_Orderid_Order) REFERENCES informacines_sistema.Order (id_Order)
 );
 
-CREATE TABLE 2 Esybiu_rysiai.payment
+CREATE TABLE informacines_sistema.payment
 (
 	payment_number int,
 	amount double precision,
@@ -169,5 +157,5 @@ CREATE TABLE 2 Esybiu_rysiai.payment
 	id_payment integer,
 	fk_Orderid_Order integer NOT NULL,
 	PRIMARY KEY(id_payment),
-	CONSTRAINT Receives FOREIGN KEY(fk_Orderid_Order) REFERENCES 2 Esybiu_rysiai.Order (id_Order)
+	CONSTRAINT Receives FOREIGN KEY(fk_Orderid_Order) REFERENCES informacines_sistema.Order (id_Order)
 );
