@@ -37,34 +37,18 @@ if (isset($_POST["submit"])) {
 
       // Send email
       $to = $email;
-      $subject = "Password Recovery";
+      $subject = "Slaptažodžio atkūrimas";
 
       $message = '
         <html>
           <head>
-            <title>Password recovery</title>
+            <title>Slaptažodžio atkūrimas</title>
           </head>
           <body>
             <p>Norėdami tęsti slaptažodžio atkūrimą, spauskite <a href="http://localhost/informacineSistema/controllers/userManagement/proc_passwordRecovery2.php?token='.$token.'">čia</a></p>
           </body>
         </html>
       ';
-
-      // Always set content-type when sending HTML email
-      $headers = "MIME-Version: 1.0" . "\r\n";
-      $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-      // More headers
-      $headers .= 'From: <infowidowsphone@gmail.com>' . "\r\n";
-
-      // ini_set("sendmail_from", "infowidowsphone@gmail.com");
-
-      // ini_set("SMTP","ssl://smtp.gmail.com");
-      // ini_set("smtp_port","465");
-
-      //mail($to,$subject,$message,$headers);
-
-
 
       require '../../PHPMailerAutoload.php';
       require '../../mailCredentials.php';
@@ -90,7 +74,7 @@ if (isset($_POST["submit"])) {
 
       $mail->Subject = $subject;
       $mail->Body    = $message;
-      $mail->AltBody = 'To recover your password copy this link to your browser address bar: link...';
+      $mail->AltBody = 'Norėdami tęsti slaptažodžio atkūrimą, nueikite šiuo adresu: http://localhost/informacineSistema/controllers/userManagement/proc_passwordRecovery2.php?token='.$token;
 
       if(!$mail->send()) {
           echo 'Message could not be sent.';
