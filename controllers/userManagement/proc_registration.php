@@ -2,7 +2,6 @@
 
 
 if (isset($_POST["submit"])) {
-  //include_once 'dbconn.php';
   include_once '../../inc/dbconn.php';
 
   $firstName = escape($conn, $_POST["firstName"]);
@@ -18,8 +17,6 @@ if (isset($_POST["submit"])) {
     header("Location: ../../views/userManagement/registration.php?message=empty");
     exit();
   } else {
-    // Check if input characters are valid 54:30 and 1:05:30
-    // code...
 
     // Check if passwords matches
     if ($pass1 !== $pass2) {
@@ -31,6 +28,10 @@ if (isset($_POST["submit"])) {
     $sql = "SELECT * FROM users WHERE email='$email'"; 
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
+
+    $sql = "SELECT * FROM employees WHERE email='$email'"; 
+    $result2 = mysqli_query($conn, $sql);
+    $resultCheck = $resultCheck + mysqli_num_rows($result2);
 
     if ($resultCheck > 0) {
       header("Location: ../../views/userManagement/registration.php?message=usertaken");

@@ -18,6 +18,7 @@
           <input type="password" class="form-control" name="pass" placeholder="Slaptažodis">
       </div>
       <button type="submit" name="submit" class="btn btn-primary form-control">Prisijungti</button>
+      <p class="text-center"><a href="passwordRecovery.php">Slaptažodžio atkūrimas</a></p>
     </div>
   </form>
 </section>
